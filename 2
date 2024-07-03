@@ -1,0 +1,38 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+
+public class CircleColorChange extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        Circle circle = new Circle(100);  // Circle with radius 100
+        circle.setFill(Color.WHITE);      // Initial color is white
+
+        circle.setOnMousePressed(event -> handleMousePress(event, circle));
+        circle.setOnMouseReleased(event -> handleMouseRelease(event, circle));
+
+        StackPane root = new StackPane(circle);
+        Scene scene = new Scene(root, 400, 400);
+
+        primaryStage.setTitle("Circle Color Change");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void handleMousePress(MouseEvent event, Circle circle) {
+        circle.setFill(Color.BLACK);      // Change color to black on mouse press
+    }
+
+    private void handleMouseRelease(MouseEvent event, Circle circle) {
+        circle.setFill(Color.WHITE);      // Change color to white on mouse release
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
